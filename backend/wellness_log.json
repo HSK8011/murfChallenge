@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "mood": "tired",
+      "energy": "2 out of 10",
+      "objectives": [
+        "complete staff work",
+        "eat",
+        "get better sleep"
+      ],
+      "summary": "User is feeling tired with 2 out of 10 energy. Goals: complete staff work, eat, get better sleep",
+      "timestamp": "2025-11-24T19:36:34.499580"
+    }
+  ]
+}
