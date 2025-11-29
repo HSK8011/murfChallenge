@@ -3,7 +3,7 @@
 import { type HTMLAttributes, useCallback, useState } from 'react';
 import { Track } from 'livekit-client';
 import { useChat, useRemoteParticipants } from '@livekit/components-react';
-import { ChatTextIcon, PhoneDisconnectIcon } from '@phosphor-icons/react/dist/ssr';
+import { ChatTextIcon, PhoneDisconnectIcon, ArrowCounterClockwise } from '@phosphor-icons/react/dist/ssr';
 import { useSession } from '@/components/app/session-provider';
 import { TrackToggle } from '@/components/livekit/agent-control-bar/track-toggle';
 import { Button } from '@/components/livekit/button';
@@ -74,6 +74,11 @@ export function AgentControlBar({
     endSession();
     onDisconnect?.();
   }, [endSession, onDisconnect]);
+
+  const handleRestartStory = useCallback(async () => {
+    // Send a message to trigger the restart_adventure tool
+    await send('restart the adventure');
+  }, [send]);
 
   const visibleControls = {
     leave: controls?.leave ?? true,
@@ -159,6 +164,18 @@ export function AgentControlBar({
             <ChatTextIcon weight="bold" />
           </Toggle>
         </div>
+
+        {/* Restart Story */}
+        <Button
+          variant="secondary"
+          size="icon"
+          onClick={handleRestartStory}
+          disabled={!isSessionActive || !isAgentAvailable}
+          aria-label="Restart story"
+          title="Restart the adventure from the beginning"
+        >
+          <ArrowCounterClockwise weight="bold" />
+        </Button>
 
         {/* Disconnect */}
         {visibleControls.leave && (
